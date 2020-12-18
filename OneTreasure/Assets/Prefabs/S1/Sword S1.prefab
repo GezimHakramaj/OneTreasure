@@ -97,11 +97,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
   unitName: Sword S1
-  meleeDamage: 0
-  rangedDamage: 0
-  maxHP: 0
-  currentHP: 0
+  meleeDamage: 15
+  rangedDamage: 5
+  maxHP: 30
+  currentHP: 30
   dead: 0
+  anim: {fileID: 5059125150113558523}
 --- !u!95 &5059125150113558523
 Animator:
   serializedVersion: 3

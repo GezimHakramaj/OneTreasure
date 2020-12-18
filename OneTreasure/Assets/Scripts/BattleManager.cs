@@ -17,7 +17,9 @@ public class BattleManager : MonoBehaviour
 	public Button[] enemyButtons;
 
 	GameObject[] playerClones = new GameObject[3];
-	GameObject[] enemyClones = new GameObject[3];  
+	GameObject[] enemyClones = new GameObject[3];
+	GameObject playerObj;
+	GameObject enemyObj;
 
 	Entity player;
 	Entity enemy;
@@ -78,9 +80,20 @@ public class BattleManager : MonoBehaviour
 	{
 		dialogueText.text = player.name + " attacked " + enemy.name + " successfully!";
 		playerAttacked++;
-		
-		if (ranged ? (enemy.TakeDamage(player.rangedDamage)) : enemy.TakeDamage(player.meleeDamage))
-			enemyDead++;
+
+        if (ranged)
+        {
+			if (enemy.TakeDamage(player.rangedDamage))
+				enemyDead++;
+			PlayShootAnim(enemyObj);
+		}
+        else
+        {
+			if (enemy.TakeDamage(player.meleeDamage))
+				enemyDead++;
+			PlaySwordAnim(enemyObj);
+		}
+		PlayIdleAnim(enemyObj);
 		//SetHP(enemyB.GetComponent<Slider>(), enemy.currentHP); // Slider values
 		ToggleButton(playerB, false);
 
@@ -113,8 +126,21 @@ public class BattleManager : MonoBehaviour
 
 			player = (!playerClones[0].GetComponent<Entity>().dead ? playerClones[0].GetComponent<Entity>() : (!playerClones[1].GetComponent<Entity>().dead ? playerClones[1].GetComponent<Entity>() : playerClones[2].GetComponent<Entity>()));
 			Debug.Log(enemy.name + " attacked " + player.name + " successfully!");
-			if (Random.Range(0, 1) == 0 ? player.TakeDamage(enemy.rangedDamage) : player.TakeDamage(enemy.meleeDamage))
-				playerDead++;
+
+			switch(Random.Range(0, 1))
+            {
+				case 0:
+					if(player.TakeDamage(enemy.rangedDamage))
+						playerDead++;
+					PlayShootAnim(enemyObj);
+					break;
+				case 1:
+					if (player.TakeDamage(enemy.meleeDamage))
+						playerDead++;
+					PlaySwordAnim(enemyObj);
+					break;
+			}
+			PlayIdleAnim(enemyObj);
 			//SetHP(playerB.GetComponent<Slider>(), player.currentHP); // Slider values
 		}
 
@@ -173,26 +199,32 @@ public class BattleManager : MonoBehaviour
 			case "Teammate 1":
 				player = playerClones[0].GetComponent<Entity>();
 				playerB = button;
+				playerObj = playerClones[0];
 				break;
 			case "Teammate 2":
 				player = playerClones[1].GetComponent<Entity>();
 				playerB = button;
+				playerObj = playerClones[1];
 				break;
 			case "Teammate 3":
 				player = playerClones[2].GetComponent<Entity>();
 				playerB = button;
+				playerObj = playerClones[2];
 				break;
 			case "Enemy 1":
 				enemy = enemyClones[0].GetComponent<Entity>();
 				enemyB = button;
+				enemyObj = enemyClones[0];
 				break;
 			case "Enemy 2":
 				enemy = enemyClones[1].GetComponent<Entity>();
 				enemyB = button;
+				enemyObj = enemyClones[1];
 				break;
 			case "Enemy 3":
 				enemy = enemyClones[2].GetComponent<Entity>();
 				enemyB = button;
+				enemyObj = enemyClones[2];
 				break;
 		}
 		UpdateUI();
@@ -220,4 +252,22 @@ public class BattleManager : MonoBehaviour
     }
 
 	bool checkPlayerTurns() { return playerAttacked == 3;  }
+
+	void PlaySwordAnim(GameObject obj)
+    {
+		Animator anim = obj.GetComponent<Animator>();
+		anim.SetTrigger("Stab");
+    }
+
+	void PlayShootAnim(GameObject obj)
+	{
+		Animator anim = obj.GetComponent<Animator>();
+		anim.SetTrigger("Shoot");
+	}
+
+	void PlayIdleAnim(GameObject obj)
+	{
+		Animator anim = obj.GetComponent<Animator>();
+		anim.SetTrigger("Idle");
+	}
 }

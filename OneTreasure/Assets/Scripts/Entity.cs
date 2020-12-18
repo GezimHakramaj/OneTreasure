@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
+
+
 	public Slider hpSlider;
 
 	public string unitName;
@@ -29,17 +31,15 @@ public class Entity : MonoBehaviour
 	public bool TakeDamage(int dmg)
     {
 		currentHP -= dmg;
-		anim.SetBool("DamageTaken", true);
+		anim.SetTrigger("Hurt");
 		dead = currentHP <= 0;
-		if(dead == true)
-        {
-			anim.SetBool("Dead", dead);
+		if (dead == true)
+		{
+			anim.SetTrigger("Dead");
 			return dead;
 		}
-
-		anim.Play("idle");
+		anim.SetTrigger("Idle");
 		return dead;
-		
 	}
 
 	public void SetHUD(Entity entity)

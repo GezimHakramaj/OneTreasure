@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5825658891509882067}
-  - component: {fileID: 1936666101144880659}
+  - component: {fileID: -3512000156483963285}
   - component: {fileID: -1737956960643003247}
   - component: {fileID: -3900171866151955337}
-  - component: {fileID: -7947514925625204860}
   m_Layer: 0
   m_Name: Main_Character
   m_TagString: Untagged
@@ -29,12 +28,12 @@ Transform:
   m_GameObject: {fileID: 3006339140066261321}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1936666101144880659
+--- !u!114 &-3512000156483963285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,11 +42,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3006339140066261321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ca211029f262645a38449550445798, type: 3}
+  m_Script: {fileID: 11500000, guid: dd03f14278f0831479d6d58ef0b3b5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 11400000, guid: 9769cbbc13ca79b49847ab093668449b, type: 2}
-  spriteRenderer: {fileID: -3900171866151955337}
+  hpSlider: {fileID: 0}
+  unitName: Main Character
+  meleeDamage: 10
+  rangedDamage: 15
+  maxHP: 45
+  currentHP: 45
+  dead: 0
+  anim: {fileID: -1737956960643003247}
 --- !u!95 &-1737956960643003247
 Animator:
   serializedVersion: 3
@@ -105,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4cd4f5389dd6fa64fbc4622264b149ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -117,29 +122,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-7947514925625204860
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3006339140066261321}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.32852817, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.6}
-    newSize: {x: 1.5, y: 1.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.84294367, y: 1.6}
-  m_EdgeRadius: 0

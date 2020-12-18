@@ -103,6 +103,7 @@ MonoBehaviour:
   maxHP: 35
   currentHP: 35
   dead: 0
+  anim: {fileID: -2754373197300309419}
 --- !u!61 &6589514497165888647
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -3433,13 +3433,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTeam:
-  - {fileID: 8213268933441720938, guid: 703c36310c795224dbb3061031813c5a, type: 3}
-  - {fileID: 3986723346713283203, guid: e957f8386a503bf4eabe85bf323d765e, type: 3}
-  - {fileID: 5332457278674872265, guid: 74ad93d52e8debd4a9ab05dcd3fe4def, type: 3}
+  - {fileID: 8863533640107951147, guid: 3cfd33fd6873965408c71095ad5c5ed4, type: 3}
+  - {fileID: 3006339140066261321, guid: 017d09a882be29e43b052200b1b1f5f8, type: 3}
+  - {fileID: 8955056697733206604, guid: aff25b33a53d58e4bb4ff6b6c267c3d3, type: 3}
   enemyTeam:
-  - {fileID: 4232452882371435830, guid: e079f9588c8395e4590253fdf47f392f, type: 3}
-  - {fileID: 2666053667387612728, guid: fd9bf32b2557d7d44af992e26fc4b1d2, type: 3}
-  - {fileID: 5142433181666565923, guid: a3573355c21cb734596c3943771fa48f, type: 3}
+  - {fileID: 7235715239006894734, guid: 73411c28f607e5a428cdc584ccda2aac, type: 3}
+  - {fileID: 7066237382717100424, guid: 607ab061e82cd4849850b539cf2a0c65, type: 3}
+  - {fileID: 6555541821099095133, guid: 86932aba003a3d7429a91748c9866708, type: 3}
   playerTeamSpawn:
   - {fileID: 1679999544}
   - {fileID: 1350911506}
