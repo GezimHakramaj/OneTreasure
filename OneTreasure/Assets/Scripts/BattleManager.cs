@@ -36,12 +36,15 @@ public class BattleManager : MonoBehaviour
 
 	public BattleState state;
 
+	
+
 	void Awake()
     {
 		for(int i = 0; i < 3; i++)
         {
 			playerButtons[i].image.sprite = playerTeam[i].GetComponent<SpriteRenderer>().sprite;
 			enemyButtons[i].image.sprite = enemyTeam[i].GetComponent<SpriteRenderer>().sprite;
+			
 		}
     }
 
@@ -75,7 +78,7 @@ public class BattleManager : MonoBehaviour
 	{
 		dialogueText.text = player.name + " attacked " + enemy.name + " successfully!";
 		playerAttacked++;
-
+		
 		if (ranged ? (enemy.TakeDamage(player.rangedDamage)) : enemy.TakeDamage(player.meleeDamage))
 			enemyDead++;
 		//SetHP(enemyB.GetComponent<Slider>(), enemy.currentHP); // Slider values

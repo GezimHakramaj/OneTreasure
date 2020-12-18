@@ -16,15 +16,30 @@ public class Entity : MonoBehaviour
 	public int currentHP;
 
 	public bool dead;
-    private void Awake()
+
+	public Animator anim;
+	
+
+	private void Awake()
     {
 		currentHP = maxHP;
+		anim = GetComponent<Animator>();
+
     }
 	public bool TakeDamage(int dmg)
     {
 		currentHP -= dmg;
+		anim.SetBool("DamageTaken", true);
 		dead = currentHP <= 0;
+		if(dead == true)
+        {
+			anim.SetBool("Dead", dead);
+			return dead;
+		}
+
+		anim.Play("idle");
 		return dead;
+		
 	}
 
 	public void SetHUD(Entity entity)
