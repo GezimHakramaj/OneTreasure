@@ -10,16 +10,26 @@ public class BattleManager : MonoBehaviour
 	public GameObject[] playerTeam;
 	public GameObject[] enemyTeam;
 
+	public AudioSource audio;
+
+	public AudioClip slash;
+    public AudioClip hurt;
+
 	public Transform[] playerTeamSpawn;
 	public Transform[] enemyTeamSpawn;
 
 	public Button[] playerButtons;
 	public Button[] enemyButtons;
 
+	public GameObject GameOver;
+	public GameObject NextLevel;
+
 	GameObject[] playerClones = new GameObject[3];
 	GameObject[] enemyClones = new GameObject[3];
 	GameObject playerObj;
 	GameObject enemyObj;
+
+	
 
 	Entity player;
 	Entity enemy;
@@ -78,7 +88,8 @@ public class BattleManager : MonoBehaviour
 	{
 		dialogueText.text = player.name + " attacked " + enemy.name + " successfully!";
 		playerAttacked++;
-
+		audio.PlayOneShot(slash,.7F);
+	
         if (ranged)
         {
 			if (enemy.TakeDamage(player.rangedDamage))
@@ -90,6 +101,7 @@ public class BattleManager : MonoBehaviour
 			if (enemy.TakeDamage(player.meleeDamage))
 				enemyDead++;
 			PlaySwordAnim(playerObj);
+			audio.PlayOneShot(hurt,.7F);
 		}
 		yield return new WaitForSeconds(1f);
 		PlayIdleAnim(playerObj);
@@ -170,9 +182,11 @@ public class BattleManager : MonoBehaviour
 		{
 			dialogueText.text = "You won the battle!";
 			//Load scene next level.
+			NextLevel.SetActive(true);
 		} else if (state == BattleState.LOST)
 		{
 			dialogueText.text = "You were defeated.";
+			GameOver.SetActive(false);
 		}
 	}
 
