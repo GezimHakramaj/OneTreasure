@@ -21,18 +21,21 @@ public class BattleManager : MonoBehaviour
 	public Button[] playerButtons;
 	public Button[] enemyButtons;
 
+	public Slider[] playerSliders;
+	public Slider[] enemySliders;
+
 	public GameObject GameOver;
 	public GameObject NextLevel;
 
 	GameObject[] playerClones = new GameObject[3];
 	GameObject[] enemyClones = new GameObject[3];
+
 	GameObject playerObj;
 	GameObject enemyObj;
 
-	
-
 	Entity player;
 	Entity enemy;
+
 	Button playerB;
 	Button enemyB;
 
@@ -54,7 +57,6 @@ public class BattleManager : MonoBehaviour
         {
 			playerButtons[i].image.sprite = playerTeam[i].GetComponent<SpriteRenderer>().sprite;
 			enemyButtons[i].image.sprite = enemyTeam[i].GetComponent<SpriteRenderer>().sprite;
-			
 		}
     }
 
@@ -67,13 +69,25 @@ public class BattleManager : MonoBehaviour
     IEnumerator SetupBattle()
 	{
 		for(int i = 0; i < 3; i++)
+        {
 			playerClones[i] = Instantiate(playerTeam[i], playerTeamSpawn[i]);
+			playerClones[i].GetComponent<Entity>().hpSlider = playerSliders[i];
+			playerClones[i].GetComponent<Entity>().SetHUD();
+		}
 
 		for (int i = 0; i < 3; i++)
+        {
 			enemyClones[i] = Instantiate(enemyTeam[i], enemyTeamSpawn[i]);
+			enemyClones[i].GetComponent<Entity>().hpSlider = enemySliders[i];
+			enemyClones[i].GetComponent<Entity>().SetHUD();
+		}
+			
 
 		player = playerClones[1].GetComponent<Entity>();
 		enemy = enemyClones[1].GetComponent<Entity>();
+
+		playerObj = playerClones[1];
+		enemyObj = enemyClones[1];
 
 		selectedCharacter.text = player.name;
 		selectedEnemy.text = enemy.name;
@@ -93,13 +107,19 @@ public class BattleManager : MonoBehaviour
         if (ranged)
         {
 			if (enemy.TakeDamage(player.rangedDamage))
+            {
 				enemyDead++;
+			}
+				
 			PlayShootAnim(playerObj);
 		}
         else
         {
 			if (enemy.TakeDamage(player.meleeDamage))
+            {
 				enemyDead++;
+			}
+				
 			PlaySwordAnim(playerObj);
 			audio.PlayOneShot(hurt,.7F);
 		}
@@ -121,7 +141,7 @@ public class BattleManager : MonoBehaviour
 
 		}
 
-		Debug.Log(state);
+		Debug.Log(playerAttacked);
 		yield return new WaitForSeconds(1f);
 	}
 
@@ -139,13 +159,17 @@ public class BattleManager : MonoBehaviour
 			switch(Random.Range(0, 1))
             {
 				case 0:
-					if(player.TakeDamage(enemy.rangedDamage))
+                    if (player.TakeDamage(enemy.rangedDamage))
+                    {
 						playerDead++;
+					}
 					PlayShootAnim(obj);
 					break;
 				case 1:
 					if (player.TakeDamage(enemy.meleeDamage))
+                    {
 						playerDead++;
+					}
 					PlaySwordAnim(obj);
 					break;
 			}

@@ -31,6 +31,7 @@ public class Entity : MonoBehaviour
 	public bool TakeDamage(int dmg)
     {
 		currentHP -= dmg;
+		hpSlider.value = currentHP;
 		anim.SetTrigger("Hurt");
 		dead = currentHP <= 0;
 		if (dead == true)
@@ -42,7 +43,7 @@ public class Entity : MonoBehaviour
 		return dead;
 	}
 
-	public void SetHUD(Entity entity)
+	public void SetHUD()
 	{
 		hpSlider.maxValue = maxHP;
 		hpSlider.value = currentHP;
