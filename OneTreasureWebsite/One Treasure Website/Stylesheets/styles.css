@@ -1,0 +1,31 @@
+body, footer{
+  background-color: powderblue;
+  text-align: center;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 2vh;
+}
+
+h1{
+  color: #000000;
+  font-size: 5vh;
+  font-weight: 500;
+}
+
+h2{
+  color: #000000;
+  font-size: 3vh;
+  font-weight: 200;
+}
+.pictures{
+  alt: "Skull";
+}
+
+#gameLogo{
+  height: 20vh;
+  width: auto;
+}
+
+#samplePic{
+  height: 25vh;
+  width: auto;
+}
