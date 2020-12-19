@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
-  unitName: Boss S1
+  name: Boss
   meleeDamage: 15
   rangedDamage: 12
   maxHP: 50

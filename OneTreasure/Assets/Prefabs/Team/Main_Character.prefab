@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
-  unitName: Main Character
+  name: Main Character
   meleeDamage: 10
   rangedDamage: 15
   maxHP: 45

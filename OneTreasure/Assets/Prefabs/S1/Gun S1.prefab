@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
-  unitName: Gun S1
+  name: Enemy 1
   meleeDamage: 7
   rangedDamage: 12
   maxHP: 25

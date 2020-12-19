@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
-  unitName: Sword S1
+  name: Enemy 2
   meleeDamage: 15
   rangedDamage: 5
   maxHP: 30

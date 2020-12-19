@@ -26,8 +26,6 @@ public class BattleManager : MonoBehaviour
 	Button playerB;
 	Button enemyB;
 
-	Slider slider;
-
 	int playerDead = 0;
 	int enemyDead = 0;
 	int playerAttacked = 0;
@@ -70,7 +68,7 @@ public class BattleManager : MonoBehaviour
 		selectedCharacter.text = player.name;
 		selectedEnemy.text = enemy.name;
 
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 
 		state = BattleState.PLAYERTURN;
 		PlayerTurn();
@@ -85,19 +83,18 @@ public class BattleManager : MonoBehaviour
         {
 			if (enemy.TakeDamage(player.rangedDamage))
 				enemyDead++;
-			PlayShootAnim(enemyObj);
+			PlayShootAnim(playerObj);
 		}
         else
         {
 			if (enemy.TakeDamage(player.meleeDamage))
 				enemyDead++;
-			PlaySwordAnim(enemyObj);
+			PlaySwordAnim(playerObj);
 		}
-		PlayIdleAnim(enemyObj);
+		yield return new WaitForSeconds(1f);
+		PlayIdleAnim(playerObj);
 		//SetHP(enemyB.GetComponent<Slider>(), enemy.currentHP); // Slider values
 		ToggleButton(playerB, false);
-
-		yield return new WaitForSeconds(2f);
 
 		if (enemyDead == 3)
 		{
@@ -113,7 +110,7 @@ public class BattleManager : MonoBehaviour
 		}
 
 		Debug.Log(state);
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 	}
 
 	IEnumerator EnemyTurn()
@@ -132,15 +129,16 @@ public class BattleManager : MonoBehaviour
 				case 0:
 					if(player.TakeDamage(enemy.rangedDamage))
 						playerDead++;
-					PlayShootAnim(enemyObj);
+					PlayShootAnim(obj);
 					break;
 				case 1:
 					if (player.TakeDamage(enemy.meleeDamage))
 						playerDead++;
-					PlaySwordAnim(enemyObj);
+					PlaySwordAnim(obj);
 					break;
 			}
-			PlayIdleAnim(enemyObj);
+			yield return new WaitForSeconds(1f);
+			PlayIdleAnim(obj);
 			//SetHP(playerB.GetComponent<Slider>(), player.currentHP); // Slider values
 		}
 
@@ -251,7 +249,7 @@ public class BattleManager : MonoBehaviour
 			ToggleButton(b, true);
     }
 
-	bool checkPlayerTurns() { return playerAttacked == 3;  }
+	bool checkPlayerTurns() { return playerAttacked == 3 - playerDead;  }
 
 	void PlaySwordAnim(GameObject obj)
     {

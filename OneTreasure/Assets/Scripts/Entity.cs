@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
 
 	public Slider hpSlider;
 
-	public string unitName;
+	public new string name;
 
 	public int meleeDamage;
 	public int rangedDamage;

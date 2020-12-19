@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpSlider: {fileID: 0}
-  unitName: Crewmate 1
+  name: Crewmate 1
   meleeDamage: 7
   rangedDamage: 15
   maxHP: 25
